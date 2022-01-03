@@ -1,0 +1,16 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.project.ProjectMapper">
+	<select id="getProject" parameterType="int" resultType="projectDTO">
+		select * from project_list where num = #{num}
+	</select>
+	<select id="getAllProject" resultType="projectDTO">
+		select * from project_list
+	</select>
+	<insert id="insertNewProject" parameterType="projectDTO">
+		insert into project_list (project_title, main_image, service, environment, function_detail, maintenance, 
+		code_link, write_day) 
+		values(#{project_title},#{main_image},#{service},#{environment},#{function_detail},#{maintenance},
+		#{code_link}, sysdate())
+	</insert>
+</mapper>
+

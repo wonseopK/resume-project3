@@ -1,0 +1,58 @@
+/* 공통부분 */
+.content-title{
+   font-size: 20px;
+   font-weight: 600;
+   color: #212140;
+   text-decoration: underline;
+}
+
+.inner {
+	width: 1536px;
+	margin: 0 auto;
+	position: relative;
+	display: flex;
+}
+.inner .my-info-container .profile-photo {
+	width: 280px;
+	height: 280px;
+	margin-left: 60px;
+	margin-top: 50px;
+	border-radius: 140px;
+}
+
+.inner .my-info-container .menu {
+	list-style: none;
+	color: white;
+	padding-left: 60px;
+}
+.inner .my-info-container .menu p{
+	color: gray;
+	font-size: 13px;
+	font-weight: 500;
+	margin-top: 5px;
+	line-height: 20px;
+}
+.inner .my-info-container .menu a{
+	color: gray;
+	font-size: 13px;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.inner .my-info-container .menu li {
+
+	cursor: pointer;
+	font-size: 14px;
+	margin-top: 20px;
+}
+
+/* 출력되는 부분 */
+.inner .show-container {
+	width: 75%;
+	height: 700px;
+	overflow-y: auto;
+}
+/* 모달 */
+.modal #message-text{
+	height: 300px;
+}
