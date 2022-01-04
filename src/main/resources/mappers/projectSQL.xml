@@ -1,16 +1,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.project.ProjectMapper">
 	<select id="getProject" parameterType="int" resultType="projectDTO">
-		select * from project_list where num = #{num}
+		select p.num, p.project_title, p.main_image, s.service, e.environment,
+ 			f.function_detail, m.maintenance, 
+		p.code_link, p.write_day 
+        from project_list p, service_purpose s, environment e, 
+        function_detail f, maintenance m
+        where p.num = #{num} and p.num = s.num and s.num = e.num and e.num = f.num and f.num = m.num 
+        and m.num = p.num;
 	</select>
 	<select id="getAllProject" resultType="projectDTO">
 		select * from project_list
 	</select>
+	<select id="getProjectMaxNum" resultType="int">
+		select ifnull(max(num),0) from project_list
+	</select>
 	<insert id="insertNewProject" parameterType="projectDTO">
-		insert into project_list (project_title, main_image, service, environment, function_detail, maintenance, 
+<!-- 		insert into project_list (project_title, main_image, service, environment, function_detail, maintenance, 
 		code_link, write_day) 
 		values(#{project_title},#{main_image},#{service},#{environment},#{function_detail},#{maintenance},
-		#{code_link}, sysdate())
+		#{code_link}, sysdate()) -->
+		insert into project_list (project_title, main_image, code_link, write_day) 
+		values(#{project_title},#{main_image},#{code_link}, sysdate())
 	</insert>
+	<insert id="insertServicePurpose" parameterType="projectDTO">
+		insert into service_purpose (num, service) values (#{num}, #{service})
+	</insert>
+	<insert id="insertEnvironment" parameterType="projectDTO">
+		insert into environment (num, environment) values (#{num}, #{environment})
+	</insert>
+	<insert id="insertFunctionDetail" parameterType="projectDTO">
+		insert into function_detail (num, function_detail) values (#{num}, #{function_detail})
+	</insert>
+	<insert id="insertMaintenance" parameterType="projectDTO">
+		insert into maintenance (num, maintenance) values (#{num}, #{maintenance})
+	</insert>
+	
 </mapper>
 

@@ -8,11 +8,12 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
-.show-container{
+.show-container2{
 	position: relative;
 	width: 100%;
 	height: 700px;
-	padding-left: 20px;
+	padding-left: 150px;
+	overflow: visible;
 }
 .show-conatiner .content-title {
     font-size: 20px;
@@ -20,20 +21,27 @@
 	color: #212140;
 	text-decoration: underline;
 }
+.show-contents{
+	width: 700px;
+	margin-top: 10px;
+}
 </style>
 </head>
 <body>
-	<div class = "show-container">
+	<div class = "show-container2">
 		<br><span class="content-title">Service-Purpose</span>
-		<div>${project.service}</div>
+		<div class="show-contents">${project.service}</div>
+		
 		<br><span class="content-title">Development-Environment</span>
-		<div>${project.environment}</div>
+		<div class="show-contents">${project.environment}</div>
+		
 		<br><span class="content-title">Function-Explanation</span>
-		<div>${project.function_detail}</div>
+		<div class="show-contents">${project.function_detail}</div>
+		
 		<br><span class="content-title">Maintenance</span>
-		<div>${project.maintenance}</div>
+		<div class="show-contents">${project.maintenance}</div>
 		<br><span class="content-title">Code-Link</span>
-		<br><a href="${project.code_link}">move to GitHub</a>
+		<br><a target="blank" href="${project.code_link}">move to GitHub</a>
 	</div>
 </body>
 </html>

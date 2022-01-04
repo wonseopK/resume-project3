@@ -25,12 +25,16 @@ public class ProjectController {
 		model.addAttribute("list", list);
 		return "/project/project";
 	}
+	
+	
 	@GetMapping("/project-list/project-detail")
 	public String showDetail(int num, Model model) {
 		ProjectDTO project = projectService.getProject(num);
 		model.addAttribute("project", project);
 		return "/project/projectDetail";
 	}
+	
+	
 	@GetMapping("/project-list/project-form")
 	public String showProjectForm() {
 		return "/project/projectForm";
@@ -56,6 +60,10 @@ public class ProjectController {
 			e.printStackTrace();
 		}
 		projectService.insertNewProject(dto);
+		projectService.insertServicePurpose(dto);
+		projectService.insertEnvironment(dto);
+		projectService.insertFunctionDetail(dto);
+		projectService.insertMaintenance(dto);
 		return "redirect:/resume/project-list";
 	}
 }

@@ -15,14 +15,15 @@
 	.base-btn{
 		width: 80px;
 		height: 30px;
-		background-color: #212140;
-		color: white;
+		background: white;
+		color: #212140;
 		border: none;
 	}
 	.base-btn:hover{
 		color: white;
-		background-color: #333;
+		background: #212140;
 	}
+
 	/* 프로젝트 컨테이너 */
 	.project-container{
 		width: 100%;
@@ -76,8 +77,7 @@
 		witdh: 500px;
 		height: 60px;
 		text-align: center;
-		color: white;
-		background-color: #212140;
+		background-color: #f7f9fa;
 		line-height: 60px;
 		font-size: 16px;
 		font-weight: 500;
@@ -87,10 +87,6 @@
 		width:500px;
 		overflow:hidden;
 				 
-	}
-	.project-container .project-list-container .project .title:hover{
-		color: white;
-		background-color: #333;
 	}
 	.project-container .page-container{
 		width: 100%;
@@ -104,12 +100,6 @@
 		background-color: #f7f9fa;
 		margin: auto;
 	}
-	.project-container .posting-container{
-		width: 100%;
-		height: 800px;
-		background-color: skyblue;
-	}
-	
 </style>
 </head>
 <body>
@@ -131,7 +121,7 @@
 		<div class ="project-list-container">
 			<c:forEach var="project" items="${list}">
 				<div class = "project">
-					<input class="project-num" type="hidden" value="${project.num}">
+					<input type="hidden" class="project-num" value="${project.num}">
 					<img alt="ProjectImage" src="../project/${project.main_image}" class='project-image'>
 					<div class ="title">
 						<span>${project.project_title}</span>
