@@ -132,18 +132,12 @@
 			<c:forEach var="project" items="${list}">
 				<div class = "project">
 					<input class="project-num" type="hidden" value="${project.num}">
-					<img alt="ProjectImage" src="../project/main.JPG" class='project-image'>
+					<img alt="ProjectImage" src="../project/${project.main_image}" class='project-image'>
 					<div class ="title">
 						<span>${project.project_title}</span>
 					</div>
 				</div>
 			</c:forEach>
-			<div class = "project">
-				<img alt="ProjectImage" src="../project/main.JPG" class='project-image'>
-				<div class ="title">
-					<span>팀프로젝트 번뜩</span>
-				</div>
-			</div>
 		</div>
 		<div class ="page-container">
 			<div class="page">

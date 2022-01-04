@@ -24,16 +24,16 @@
 </head>
 <body>
 	<div class = "show-container">
-		<br><span class="content-title">서비스내용</span>
+		<br><span class="content-title">Service-Purpose</span>
 		<div>${project.service}</div>
-		<br><span class="content-title">개발환경</span>
+		<br><span class="content-title">Development-Environment</span>
 		<div>${project.environment}</div>
-		<br><span class="content-title">기능설명</span>
+		<br><span class="content-title">Function-Explanation</span>
 		<div>${project.function_detail}</div>
-		<br><span class="content-title">유지보수</span>
+		<br><span class="content-title">Maintenance</span>
 		<div>${project.maintenance}</div>
-		<br><span class="content-title">코드정보</span>
-		<div>${project.code_link}</div>
+		<br><span class="content-title">Code-Link</span>
+		<br><a href="${project.code_link}">move to GitHub</a>
 	</div>
 </body>
 </html>
