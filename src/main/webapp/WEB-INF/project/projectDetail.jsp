@@ -8,14 +8,40 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
+.base-btn{
+		width: 80px;
+		height: 30px;
+		background: #212140;
+		color: white;
+		border: none;
+}
+.base-btn:hover{
+	color: white;
+	background: grey;
+}
+.list-btn{
+	position: absolute;
+	bottom: -50px;
+	left: 150px;
+}
+.delete-btn{
+	position: absolute;
+	bottom: -50px;
+	right: 100px;
+}
+.update-btn{
+	position: absolute;
+	bottom: -50px;
+	right: 10px;
+}
+
 .show-container2{
 	position: relative;
 	width: 100%;
-	height: 700px;
 	padding-left: 150px;
-	overflow: visible;
+	margin-bottom: 80px;
 }
-.show-conatiner .content-title {
+.content-title {
     font-size: 20px;
 	font-weight: 600;
 	color: #212140;
@@ -28,7 +54,9 @@
 </style>
 </head>
 <body>
+	
 	<div class = "show-container2">
+		
 		<br><span class="content-title">Service-Purpose</span>
 		<div class="show-contents">${project.service}</div>
 		
@@ -42,6 +70,9 @@
 		<div class="show-contents">${project.maintenance}</div>
 		<br><span class="content-title">Code-Link</span>
 		<br><a target="blank" href="${project.code_link}">move to GitHub</a>
+		<button type = "button" class="base-btn list-btn">목록</button>
+		<button type = "button" class="base-btn delete-btn" >삭제</button>
+		<button type = "button" class="base-btn update-btn" >수정</button>
 	</div>
 </body>
 </html>
