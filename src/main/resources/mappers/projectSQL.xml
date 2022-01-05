@@ -43,5 +43,9 @@
 		insert into maintenance (num, maintenance) values (#{num}, #{maintenance})
 	</insert>
 	
+	
+	<delete id="deleteProject" parameterType="int">
+		delete from project_list where num = #{num}
+	</delete>
 </mapper>
 

@@ -6,14 +6,11 @@
 <html>
 <head>
 <title>Insert title here</title>
-<link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <style type="text/css">
 	/* 공통사용 */
 	.project-image{
 		width: 500px;
-		height: 320px;
+		height: 400px;
 	}
 	.base-btn{
 		width: 80px;
@@ -26,13 +23,11 @@
 		color: white;
 		background: grey;
 	}
-	
 	.write-btn{
 		position: absolute;
-		top: 30px;
-		right: 170px;
+		top: 33px;
+		right: 53px;
 	}
-
 	/* 프로젝트 컨테이너 */
 	.project-container{
 		width: 100%;
@@ -52,7 +47,6 @@
 		width: 100%;
 		height: 50px;
 		position: relative;
-		
 	}
 	.search{
 		margin: auto;
@@ -86,18 +80,21 @@
 		witdh: 500px;
 		height: 60px;
 		text-align: center;
-		background-color: #f7f9fa;
+		background-color: white;
+		color: #333;
 		line-height: 60px;
 		font-size: 16px;
-		font-weight: 500;
+		font-weight: 600;
 		text-overflow:ellipsis;
 		white-space:nowrap;
 		word-wrap:normal;
 		width:500px;
 		overflow:hidden;
+		border: 5px solid #f7f9fa;
 				 
 	}
 	.page-container{
+		margin-top: 50px;
 		width: 100%;
 		height: 90px;
 		position: relative;
@@ -106,7 +103,6 @@
 	.page{
 		width: 600px;
 		height: 60px;
-		background-color: #f7f9fa;
 		margin: auto;
 		text-align: center;
 		line-height: 60px;
@@ -118,8 +114,7 @@
 		<div class ="title-container">
 			<span>PROJECT</span>
 		</div>
-		
-		<div class ="search-container">
+		<!-- <div class ="search-container">
 			<div class ="search">
 				<select class="search-option">
 					<option>제목</option>
@@ -128,7 +123,7 @@
 				<input class= "keyword" type="text" name="keyword" placeholder="검색할 내용을 입력해주세요">
 				<button class='search-btn base-btn' type="button">검색</button>
 			</div>
-		</div>
+		</div> -->
 		<div class ="project-list-container">
 			<c:forEach var="project" items="${list}">
 				<div class = "project-detail">
@@ -141,26 +136,26 @@
 			</c:forEach>
 		</div>
 		<div class ="page-container">
-			<c:if test="${totalCount>0}">
+			<c:if test="${page.totalCount>0}">
 				<div class="page">
 					<ul class="pagination">
 						<!-- 이전 -->
-						<c:if test="${startPage>1}">
-							<li><a href="../resume/project-list?currentPage=${startPage-1}">이전</a></li>
+						<c:if test="${page.startPage>1}">
+							<li><a href="../resume/project-list?currentPage=${page.startPage-1}">이전</a></li>
 						</c:if>
 						
-						<c:forEach var="pp" begin="${startPage}" end="${endPage}">
-							<c:if test="${currentPage==pp}">
+						<c:forEach var="pp" begin="${page.startPage}" end="${page.endPage}">
+							<c:if test="${page.currentPage==pp}">
 								<li class="active"><a href="../resume/project-list?currentPage=${pp}">${pp}</a></li>
 							</c:if>
-							<c:if test="${currentPage!=pp}">
+							<c:if test="${page.currentPage!=pp}">
 								<li><a href="../resume/project-list?currentPage=${pp}">${pp}</a></li>
 							</c:if>
 						</c:forEach>
 						
 						<!-- 다음 -->
-						<c:if test="${endPage<totalPage}">
-							<li><a href="../resume/project-list?currentPage=${endPage+1}">다음</a></li>
+						<c:if test="${page.endPage<totalPage}">
+							<li><a href="../resume/project-list?currentPage=${page.endPage+1}">다음</a></li>
 						</c:if>
 					</ul>
 				</div>
@@ -168,6 +163,8 @@
 			<button class="write-btn base-btn">글작성</button>
 		</div>
 	</div>
+	<input type="hidden" id="currentPage" value="${page.currentPage }">
+	
 	<script type="text/javascript">
 		$(".write-btn").click(function() {
 			location.href="../project-list/project-form";
@@ -175,18 +172,19 @@
 		
 		$(".project-detail").click(function() {
 			let num = $(this).children(".project-num").val()
-			location.href="../project-list/project-detail?num="+num;
+			let currentPage = $("#currentPage").val()
+			location.href="../project-list/project-detail?num="+num+"&currentPage="+currentPage;
 		})
 		
 		$(".project-detail").hover(function() {
 			$(this).children().css({
-				"color": "white",
-				"background-color": "grey"
+				"color": "#333",
+				"background-color": "#f7f9fa"
 			})	
 		}, function() {
 			$(this).children().css({
 				"color": "#333",
-				"background-color": "#f7f9fa"
+				"background-color": "white"
 			})	
 		})
 	</script>

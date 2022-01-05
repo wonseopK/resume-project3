@@ -71,8 +71,37 @@
 		<br><span class="content-title">Code-Link</span>
 		<br><a target="blank" href="${project.code_link}">move to GitHub</a>
 		<button type = "button" class="base-btn list-btn">목록</button>
+		
 		<button type = "button" class="base-btn delete-btn" >삭제</button>
 		<button type = "button" class="base-btn update-btn" >수정</button>
+		
+		<input type="hidden" id="num" value="${project.num}">
+		<input type="hidden" id="currentPage" value="${currentPage}">
+		
+		<script type="text/javascript">
+			$(".list-btn").click(function() {
+				let currentPage = $("#currentPage").val()
+				location.href="../resume/project-list?currentPage="+currentPage;
+			})
+			$(".delete-btn").click(function() {
+				let check = confirm("정말로 삭제하시겠습니까?");
+				if(check){
+					let currentPage = $("#currentPage").val()
+					let num = $("#num").val();
+					$.ajax({
+						type		: "Delete",
+						  url		: "../project-list/bad-project",
+						  data		: {num : num},
+						  success	: function() {
+							  location.href="../resume/project-list?currentPage=1"
+						  },
+						  error		: function(request,status,error){
+						        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+						  }
+					})
+				}
+			})
+		</script>
 	</div>
 </body>
 </html>

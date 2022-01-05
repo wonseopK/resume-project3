@@ -47,4 +47,9 @@ public class ProjectService {
 		projectMapper.insertFunctionDetail(dto);
 		projectMapper.insertMaintenance(dto);
 	}
+	
+	//프로젝트 제거
+	public void deleteProject(int num) {
+		projectMapper.deleteProject(num);
+	}
 }
