@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProjectController {
@@ -20,11 +21,48 @@ public class ProjectController {
 	ProjectService projectService;
 	
 	@GetMapping("/resume/project-list")
-	public String showProject(Model model) {
-		List<ProjectDTO> list = projectService.getAllProject();
+	public String showProject(@RequestParam(value = "currentPage" , defaultValue = "1" ) int currentPage, Model model) {
+		int totalCount = projectService.getTotalProject();//총 글의 수
+		
+		//페이징 처리에 필요한 변수선언
+		int perPage = 2; //한페이지에 보여질 글의 갯수
+		int totalPage; //총 페이지수
+		int start; //각페이지에서 불러올 db의 시작번호
+		int perBlock = 5; //몇개의 페이지번호씩 표현할것인가
+		int startPage; //각 블럭에 표시할 시작페이지
+		int endPage; //각 블럭에 표시할 마지막페이지
+		
+		//총페이지 갯수 구하기
+		totalPage = totalCount/perPage + (totalCount%perPage == 0 ? 0 : 1);
+		
+		//각 블럭의 시작페이지
+		startPage = (currentPage-1)/perBlock*perBlock+1;
+		endPage = startPage+perBlock-1;
+		
+		if(endPage>totalPage){
+			endPage = totalPage;
+		}
+		
+		//각 페이지에서 불러올 시작번호
+		start = (currentPage-1)*perPage; //오라클은 첫번이1이라 1더해야함
+		//각페이지에서 필요한 게시글 가져오기
+		List<ProjectDTO> list = projectService.getAllProject(start, perPage);
+		
+		//각페이지에 출력할 시작번호
+		int no = totalCount-(currentPage-1)*perPage; 
+		
 		model.addAttribute("list", list);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("no", no);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("no", no);
+		
 		return "/project/project";
 	}
+	
 	
 	
 	@GetMapping("/project-list/project-detail")
@@ -40,16 +78,9 @@ public class ProjectController {
 		return "/project/projectForm";
 	}
 	
+	
 	@PostMapping("/project-list/new-project")
 	public String postNewProject(ProjectDTO dto, HttpServletRequest request) {
-		//출력확인
-//		System.out.println(dto.getCode_link());
-//		System.out.println(dto.getEnvironment());
-//		System.out.println(dto.getFunction_detail());
-//		System.out.println(dto.getMain_image());
-//		System.out.println(dto.getMaintenance());
-//		System.out.println(dto.getProject_title());
-//		System.out.println(dto.getService());
 		String path = request.getSession().getServletContext().getRealPath("/project");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String mainImage = sdf.format(new Date()) + "_" + dto.getUpload().getOriginalFilename();

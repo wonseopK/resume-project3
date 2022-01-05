@@ -6,6 +6,9 @@
 <html>
 <head>
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <style type="text/css">
 	/* 공통사용 */
 	.project-image{
@@ -15,13 +18,19 @@
 	.base-btn{
 		width: 80px;
 		height: 30px;
-		background: white;
-		color: #212140;
+		background: #212140;
+		color: white;
 		border: none;
 	}
 	.base-btn:hover{
 		color: white;
-		background: #212140;
+		background: grey;
+	}
+	
+	.write-btn{
+		position: absolute;
+		top: 30px;
+		right: 170px;
 	}
 
 	/* 프로젝트 컨테이너 */
@@ -30,7 +39,7 @@
 		height: 700px;
 		position: relative;
 	}
-	.project-container .title-container{
+	.title-container{
 		margin: auto;
 		width: 600px;
 		height: 120px;
@@ -39,41 +48,41 @@
 		font-weight: 500;
 		text-align: center;
 	}
-	.project-container .search-container{
+	.search-container{
 		width: 100%;
 		height: 50px;
 		position: relative;
 		
 	}
-	.project-container .search-container .search{
+	.search{
 		margin: auto;
 		width: 555px;
 		height: 50px;
 		background: #f7f9fa;
 		padding: 10px;
 	}
-	.project-container .search-container .search .search-option{
+	.search-option{
 		width: 80px;
 		height: 30px;
 	}
-	.project-container .search-container .search .keyword{
+	.keyword{
 		width: 360px;
 		height: 30px;
 	}
-	.project-container .project-list-container{
+	.project-list-container{
 		width: 100%;
 		height: 440px;
 		position: relative;
 		display: flex;
 	}
-	.project-container .project-list-container .project{
+	.project-detail{
 		witdh: 500px;
 		height: 380px;
 		margin-left: 50px;
 		margin-top: 40px;
 		cursor: pointer;
 	}
-	.project-container .project-list-container .project .title{
+	.title{
 		witdh: 500px;
 		height: 60px;
 		text-align: center;
@@ -88,17 +97,19 @@
 		overflow:hidden;
 				 
 	}
-	.project-container .page-container{
+	.page-container{
 		width: 100%;
 		height: 90px;
 		position: relative;
 		padding-top: 15px;
 	}
-	.project-container .page-container .page{
+	.page{
 		width: 600px;
 		height: 60px;
 		background-color: #f7f9fa;
 		margin: auto;
+		text-align: center;
+		line-height: 60px;
 	}
 </style>
 </head>
@@ -120,7 +131,7 @@
 		</div>
 		<div class ="project-list-container">
 			<c:forEach var="project" items="${list}">
-				<div class = "project">
+				<div class = "project-detail">
 					<input type="hidden" class="project-num" value="${project.num}">
 					<img alt="ProjectImage" src="../project/${project.main_image}" class='project-image'>
 					<div class ="title">
@@ -130,9 +141,31 @@
 			</c:forEach>
 		</div>
 		<div class ="page-container">
-			<div class="page">
-				<button class="write-btn base-btn">글작성</button>
-			</div>
+			<c:if test="${totalCount>0}">
+				<div class="page">
+					<ul class="pagination">
+						<!-- 이전 -->
+						<c:if test="${startPage>1}">
+							<li><a href="../resume/project-list?currentPage=${startPage-1}">이전</a></li>
+						</c:if>
+						
+						<c:forEach var="pp" begin="${startPage}" end="${endPage}">
+							<c:if test="${currentPage==pp}">
+								<li class="active"><a href="../resume/project-list?currentPage=${pp}">${pp}</a></li>
+							</c:if>
+							<c:if test="${currentPage!=pp}">
+								<li><a href="../resume/project-list?currentPage=${pp}">${pp}</a></li>
+							</c:if>
+						</c:forEach>
+						
+						<!-- 다음 -->
+						<c:if test="${endPage<totalPage}">
+							<li><a href="../resume/project-list?currentPage=${endPage+1}">다음</a></li>
+						</c:if>
+					</ul>
+				</div>
+			</c:if>
+			<button class="write-btn base-btn">글작성</button>
 		</div>
 	</div>
 	<script type="text/javascript">
@@ -140,22 +173,21 @@
 			location.href="../project-list/project-form";
 		})
 		
-		$(".project").click(function() {
+		$(".project-detail").click(function() {
 			let num = $(this).children(".project-num").val()
 			location.href="../project-list/project-detail?num="+num;
 		})
 		
-		$(".project").hover(function() {
+		$(".project-detail").hover(function() {
 			$(this).children().css({
 				"color": "white",
-				"background-color": "#333"
+				"background-color": "grey"
 			})	
 		}, function() {
 			$(this).children().css({
-				"color": "white",
-				"background-color": "#212140"
+				"color": "#333",
+				"background-color": "#f7f9fa"
 			})	
-			
 		})
 	</script>
 </body>

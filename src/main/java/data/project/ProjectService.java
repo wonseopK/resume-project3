@@ -10,13 +10,19 @@ public class ProjectService {
 	@Autowired
 	ProjectMapper projectMapper;
 	
-	public List<ProjectDTO> getAllProject(){
-		return projectMapper.getAllProject();
+	public List<ProjectDTO> getAllProject(int start, int perPage){
+		return projectMapper.getAllProject(start, perPage);
 	}
 	public ProjectDTO getProject(int num){
 		return projectMapper.getProject(num);
 	}
 	
+	public int getTotalProject() {
+		return projectMapper.getTotalProject();
+	}
+	
+	
+	//프로젝트 등록
 	public void insertNewProject(ProjectDTO dto) {
 		projectMapper.insertNewProject(dto);
 	}

@@ -2,19 +2,26 @@
 <mapper namespace="data.project.ProjectMapper">
 	<select id="getProject" parameterType="int" resultType="projectDTO">
 		select p.num, p.project_title, p.main_image, s.service, e.environment,
- 			f.function_detail, m.maintenance, 
-		p.code_link, p.write_day 
-        from project_list p, service_purpose s, environment e, 
-        function_detail f, maintenance m
-        where p.num = #{num} and p.num = s.num and s.num = e.num and e.num = f.num and f.num = m.num 
-        and m.num = p.num;
+ 			f.function_detail, m.maintenance, p.code_link, p.write_day 
+        	from project_list p, service_purpose s, environment e, function_detail f, maintenance m
+        	where p.num = #{num} and p.num = s.num and s.num = e.num and e.num = f.num and f.num = m.num 
+        	and m.num = p.num;
 	</select>
-	<select id="getAllProject" resultType="projectDTO">
-		select * from project_list
+	
+	<select id="getAllProject" parameterType="int" resultType="projectDTO">
+		select * from project_list order by num desc limit #{start}, #{perPage}
 	</select>
+	
 	<select id="getProjectMaxNum" resultType="int">
-		select ifnull(max(num),0) from project_list
+		select ifnull(max(num),0) from project_list 
 	</select>
+	
+	<select id="getTotalProject" resultType="int">
+		select count(*) from project_list
+	</select>
+	
+	
+	<!-- 프로젝트 등록 -->
 	<insert id="insertNewProject" parameterType="projectDTO">
 <!-- 		insert into project_list (project_title, main_image, service, environment, function_detail, maintenance, 
 		code_link, write_day) 
