@@ -21,6 +21,10 @@
 # 프로젝트 진행 중 발생한 여러 문제점 및 해결방안
 ![image](https://user-images.githubusercontent.com/87956011/148191604-7774affc-db99-4363-a457-70b0f13d48de.png)
 컨트롤러에 있는 로직을 서비스로 이동시켜야 할 부분이 많습니다.<br/>
+<br/>![image](https://user-images.githubusercontent.com/87956011/148196512-bb9deb44-3b03-4eb2-bf19-11c29967062f.png)<br/>
+로직을 서비스로 이동시켜서 위의 사진에 보이는 양의 코드를 제거할 수 있었습니다. 코드의 중복제거는 프로젝트 유지보수에 도움이 많이되는 것 같습니다.
+
+
 <br/><br/>![image](https://user-images.githubusercontent.com/87956011/148191760-07aec21a-e2ae-472e-a58f-3f4712b555fd.png)<br/>
 이렇게 model에 여러개 담아보내면 코드가 복잡해 보입니다. 그래서 새로 DTO를 만들고 @modelAttribute로 매개변수로 받아서 사용하려고 생각하고 있습니다.<br/>
 <br/><br/>![image](https://user-images.githubusercontent.com/87956011/148192358-51f66404-7c07-4095-9561-3bac9a4126a2.png)
