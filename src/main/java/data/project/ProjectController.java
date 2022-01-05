@@ -1,9 +1,5 @@
 package data.project;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,7 +54,6 @@ public class ProjectController {
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("no", no);
 		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("no", no);
 		
 		return "/project/project";
 	}
@@ -81,20 +76,7 @@ public class ProjectController {
 	
 	@PostMapping("/project-list/new-project")
 	public String postNewProject(ProjectDTO dto, HttpServletRequest request) {
-		String path = request.getSession().getServletContext().getRealPath("/project");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-		String mainImage = sdf.format(new Date()) + "_" + dto.getUpload().getOriginalFilename();
-		dto.setMain_image(mainImage);
-		try {
-			dto.getUpload().transferTo(new File(path + "\\" + mainImage));
-		} catch (IllegalStateException | IOException e) {
-			e.printStackTrace();
-		}
-		projectService.insertNewProject(dto);
-		projectService.insertServicePurpose(dto);
-		projectService.insertEnvironment(dto);
-		projectService.insertFunctionDetail(dto);
-		projectService.insertMaintenance(dto);
+		projectService.insertNewProject(dto, request);
 		return "redirect:/resume/project-list";
 	}
 }

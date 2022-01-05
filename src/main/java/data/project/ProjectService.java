@@ -1,6 +1,12 @@
 package data.project;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,24 +29,22 @@ public class ProjectService {
 	
 	
 	//프로젝트 등록
-	public void insertNewProject(ProjectDTO dto) {
+	public void insertNewProject(ProjectDTO dto, HttpServletRequest request) {
+		String path = request.getSession().getServletContext().getRealPath("/project");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String mainImage = sdf.format(new Date()) + "_" + dto.getUpload().getOriginalFilename();
+		dto.setMain_image(mainImage);
+		try {
+			dto.getUpload().transferTo(new File(path + "\\" + mainImage));
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		
 		projectMapper.insertNewProject(dto);
-	}
-	public void insertServicePurpose(ProjectDTO dto) {
 		dto.setNum(projectMapper.getProjectMaxNum());
-		System.out.println(dto.getNum());
 		projectMapper.insertServicePurpose(dto);
-	}
-	public void insertEnvironment(ProjectDTO dto) {
-		dto.setNum(projectMapper.getProjectMaxNum());
 		projectMapper.insertEnvironment(dto);
-	}
-	public void insertFunctionDetail(ProjectDTO dto) {
-		dto.setNum(projectMapper.getProjectMaxNum());
 		projectMapper.insertFunctionDetail(dto);
-	}
-	public void insertMaintenance(ProjectDTO dto) {
-		dto.setNum(projectMapper.getProjectMaxNum());
 		projectMapper.insertMaintenance(dto);
 	}
 }
