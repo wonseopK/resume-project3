@@ -63,7 +63,7 @@
 	          <span class = "detail-title">Spring Boot</span>
 	          국비 학원에서 스프링부트를 사용해서 프로젝트를 진행했으며 만들어진 프로젝트에서 개선할 점이 <br>발견되면 수정하고 새로운 프로젝트를
 	          지속 적으로 만들고 있습니다.
-	          <span class = "detail-title">MySql</span>
+	          <span class = "detail-title">Database</span>
 	          ﻿DDL, DML, DCL을 블로그에 간단하게 요약하고 매일 복습하며 기본적인 CRUD기능 구현을<br> 연습하고 있습니다.
 	          <span class = "detail-title">AWS</span>
 	          ﻿ec2의 원격 컴퓨터 rdp에 새로운 프로젝트를 연습할 때 마다 배포를 하는데요 db는 aws에 rds를 사용하고 있습니다.<br>        ﻿
