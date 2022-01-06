@@ -26,7 +26,16 @@ public interface ProjectMapper {
 	public void insertFunctionDetail(ProjectDTO dto);
 	public void insertMaintenance(ProjectDTO dto);
 	
+	//프로젝트 수정
+	public void updateProject(ProjectDTO dto);
+	public void updateService(ProjectDTO dto);
+	public void updateEnvironment(ProjectDTO dto);
+	public void updateFunctionDetail(ProjectDTO dto);
+	public void updateMaintenance(ProjectDTO dto);
+	
 	//프로젝트 제거
 	public void deleteProject(int num);
+	
+	
 	
 }

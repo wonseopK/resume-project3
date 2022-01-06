@@ -130,7 +130,7 @@
 					<input type="hidden" class="project-num" value="${project.num}">
 					<img alt="ProjectImage" src="../project/${project.main_image}" class='project-image'>
 					<div class ="title">
-						<span>${project.project_title}</span>
+						<span><c:out value="${project.project_title}"></c:out></span>
 					</div>
 				</div>
 			</c:forEach>

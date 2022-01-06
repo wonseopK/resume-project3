@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class ProjectService {
 	@Autowired
 	ProjectMapper projectMapper;
-	
+	//모든 프로젝트 가져오기
 	public List<ProjectDTO> getAllProject(int start, int perPage){
 		return projectMapper.getAllProject(start, perPage);
 	}
@@ -47,6 +47,19 @@ public class ProjectService {
 		projectMapper.insertEnvironment(dto);
 		projectMapper.insertFunctionDetail(dto);
 		projectMapper.insertMaintenance(dto);
+	}
+	
+	//프로젝트 수정
+	public void updateProject(ProjectDTO dto) {
+		System.out.println(dto.getProject_title());
+		System.out.println(dto.getService());
+		//수정
+		projectMapper.updateProject(dto);
+		System.out.println("dto숫자"+dto.getNum());
+		projectMapper.updateService(dto);
+		projectMapper.updateEnvironment(dto);
+		projectMapper.updateFunctionDetail(dto);
+		projectMapper.updateMaintenance(dto);
 	}
 	
 	//프로젝트 제거

@@ -26,10 +26,6 @@
 	
 	<!-- 프로젝트 등록 -->
 	<insert id="insertNewProject" parameterType="projectDTO">
-<!-- 		insert into project_list (project_title, main_image, service, environment, function_detail, maintenance, 
-		code_link, write_day) 
-		values(#{project_title},#{main_image},#{service},#{environment},#{function_detail},#{maintenance},
-		#{code_link}, sysdate()) -->
 		insert into project_list (project_title, main_image, code_link, write_day) 
 		values(#{project_title},#{main_image},#{code_link}, sysdate())
 	</insert>
@@ -46,7 +42,27 @@
 		insert into maintenance (num, maintenance) values (#{num}, #{maintenance})
 	</insert>
 	
+	<!-- 프로젝트 수정 -->
+	<update id="updateProject" parameterType="ProjectDTO">
+		<!-- main_image = #{main_image}, -->
+		update project_list set project_title = #{project_title}, code_link = #{code_link} 
+		where num = #{num}
+	</update>
+	<update id="updateService" parameterType="ProjectDTO">
+		update service_purpose set service = #{service} where num = #{num}
+	</update>
+	<update id="updateEnvironment" parameterType="ProjectDTO">
+		update environment set environment = #{environment} where num = #{num}
+	</update>
+	<update id="updateFunctionDetail" parameterType="ProjectDTO">
+		update function_detail set function_detail = #{function_detail} where num = #{num}
+	</update>
+	<update id="updateMaintenance" parameterType="ProjectDTO">
+		update maintenance set maintenance = #{maintenance} where num = #{num}
+	</update>
 	
+	
+	<!-- 프로젝트 삭제 -->
 	<delete id="deleteProject" parameterType="int">
 		delete from project_list where num = #{num}
 	</delete>

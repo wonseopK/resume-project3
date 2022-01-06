@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import data.paging.PagingDTO;
@@ -20,6 +21,20 @@ public class ProjectController {
 	@Autowired
 	ProjectService projectService;
 	
+	//프로젝트 게시물 생성 CREATE
+	@PostMapping("/project-list/new-project")
+	public String postNewProject(ProjectDTO dto, HttpServletRequest request) {
+		projectService.insertNewProject(dto, request);
+		return "redirect:/resume/project-list";
+	}
+	
+	@GetMapping("/project-list/project-form")
+	public String showProjectForm() {
+		return "/project/projectForm";
+	}
+	
+	
+	//프로젝트 게시물 읽기 READ
 	@GetMapping("/resume/project-list")
 	public String showProject(PagingDTO pagingDTO, Model model) {
 		int totalCount = projectService.getTotalProject();//총 글의 수
@@ -31,10 +46,6 @@ public class ProjectController {
 		
 		return "/project/project";
 	}
-	
-	
-	
-	
 	@GetMapping("/project-list/project-detail")
 	public String showDetail(int num, int currentPage, Model model) {
 		ProjectDTO project = projectService.getProject(num);
@@ -44,19 +55,23 @@ public class ProjectController {
 		return "/project/projectDetail";
 	}
 	
-	
-	@GetMapping("/project-list/project-form")
-	public String showProjectForm() {
-		return "/project/projectForm";
+	//프로젝트 게시물 수정 UPDATE
+	@GetMapping("/project-list/updateForm")
+	public String showUpdateForm(int num, Model m) {
+		m.addAttribute("project", projectService.getProject(num));
+		return "/project/projectUpdateForm";
 	}
-	
-	
-	@PostMapping("/project-list/new-project")
-	public String postNewProject(ProjectDTO dto, HttpServletRequest request) {
-		projectService.insertNewProject(dto, request);
+	@PostMapping("/project-list/change-content")
+	public String updateProject(ProjectDTO projectDTO) {
+//		System.out.println(projectDTO.getProject_title());
+//		System.out.println(projectDTO.getService());
+		System.out.println("수정num값 = " + projectDTO.getNum());
+		projectService.updateProject(projectDTO);
 		return "redirect:/resume/project-list";
 	}
 	
+	
+	//프로젝트 게시물 삭제 DELETE
 	@ResponseBody
 	@DeleteMapping("/project-list/bad-project")
 	public String  deleteProject(int num, HttpSession session) {
@@ -64,5 +79,7 @@ public class ProjectController {
 		projectService.deleteProject(num, session);
 		return "project";
 	}
+	
+	
 	
 }

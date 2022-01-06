@@ -102,6 +102,10 @@
 					})
 				}
 			})
+			$(".update-btn").click(function() {
+				let num = $("#num").val()
+				location.href="../project-list/updateForm?num=" + num
+			})
 		</script>
 	</div>
 </body>
