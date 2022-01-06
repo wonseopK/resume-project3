@@ -19,6 +19,9 @@
 	<select id="getTotalProject" resultType="int">
 		select count(*) from project_list
 	</select>
+	<select id="getMainImage" parameterType="int" resultType="String">
+		select main_image from project_list where num = #{num}
+	</select>
 	
 	
 	<!-- 프로젝트 등록 -->

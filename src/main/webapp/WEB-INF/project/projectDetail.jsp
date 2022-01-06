@@ -93,6 +93,7 @@
 						  url		: "../project-list/bad-project",
 						  data		: {num : num},
 						  success	: function() {
+							  alert("삭제되었습니다.")
 							  location.href="../resume/project-list?currentPage=1"
 						  },
 						  error		: function(request,status,error){

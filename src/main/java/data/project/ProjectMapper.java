@@ -10,6 +10,9 @@ public interface ProjectMapper {
 	public ProjectDTO getProject(int num);
 	public List<ProjectDTO> getAllProject(int start, int perPage);
 	
+	//프로젝트 이미지 이름 얻기
+	public String getMainImage(int num);
+	
 	//프로젝트 총 갯수
 	public int getTotalProject();
 	

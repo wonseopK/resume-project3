@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,7 +50,15 @@ public class ProjectService {
 	}
 	
 	//프로젝트 제거
-	public void deleteProject(int num) {
+	public void deleteProject(int num, HttpSession session) {
+		String main_image = projectMapper.getMainImage(num);
+		//실제 업로드 경로
+		String path = session.getServletContext().getRealPath("/project");
+		
+		System.out.println("main_image = " + main_image + "path" + path);
+		File file = new File(path + "\\" + main_image);
+		file.delete();
+				
 		projectMapper.deleteProject(num);
 	}
 }

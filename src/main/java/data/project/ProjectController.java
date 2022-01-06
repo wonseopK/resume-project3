@@ -3,6 +3,7 @@ package data.project;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,9 +59,9 @@ public class ProjectController {
 	
 	@ResponseBody
 	@DeleteMapping("/project-list/bad-project")
-	public String  deleteProject(int num) {
+	public String  deleteProject(int num, HttpSession session) {
 		System.out.println(num);
-		projectService.deleteProject(num);
+		projectService.deleteProject(num, session);
 		return "project";
 	}
 	
