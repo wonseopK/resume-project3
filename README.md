@@ -38,3 +38,15 @@
 # 문제 3
 <br/><br/>![image](https://user-images.githubusercontent.com/87956011/148192358-51f66404-7c07-4095-9561-3bac9a4126a2.png)
 프로젝트 게시판에서 페이지 이동시 화면이 깜빡 거리는데요 이 점을 고치기 위해서 ajax를 사용해서 페이지 이동시 부자연스러운 부분을 해결하려고 하고있습니다.
+
+# 문제 4
+![image](https://user-images.githubusercontent.com/87956011/148475025-4c7df03b-8fc3-40d0-8514-c0831dbbbd97.png)<br/>
+메뉴선택시 이미지 깜빡거림 
+
+
+# 해결
+![image](https://user-images.githubusercontent.com/87956011/148475095-ebf9ef5b-4f91-41b4-8d22-6bbdcc37a506.png)<br/>
+
+스프링정석 강좌에서 배웠던 base64가 기억나서 적용해보았습니다.
+우선 이미지를 https://www.base64-image.de/ 사이트에서 base64로 인코딩 했습니다. base 64로 인코딩하면 utf 8 기준 크기가 약 33% 
+증가하지만 서버에 요청할 필요없이 문서에 포함시킴으로써 이미지가 깜빡이는 것을 보안 할 수 있었습니다.
