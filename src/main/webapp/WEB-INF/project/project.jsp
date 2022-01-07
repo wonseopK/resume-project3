@@ -9,7 +9,7 @@
 <style type="text/css">
 	/* 공통사용 */
 	.project-image{
-		width: 398px;
+		width: 400px;
 		height: 350px;
 	}
 	.base-btn{
@@ -78,11 +78,10 @@
 		margin-top: 30px;
 		cursor: pointer;
 		background-color: white;
-		border: 1px solid grey;
 		box-sizing: border-box;
 	}
 	.title{
-		width: 398px;
+		width: 400px;
 		height: 58px;
 		text-align: center;
 		background-color: white;

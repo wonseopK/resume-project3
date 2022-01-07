@@ -50,9 +50,33 @@ public class ProjectService {
 	}
 	
 	//프로젝트 수정
-	public void updateProject(ProjectDTO dto) {
-		System.out.println(dto.getProject_title());
-		System.out.println(dto.getService());
+	public void updateProject(ProjectDTO dto, HttpServletRequest request) {
+		String orginalFileName = dto.getUpload().getOriginalFilename();
+		String current_image = projectMapper.getMainImage(dto.getNum());
+		System.out.println(orginalFileName +"orginalFileName");
+		System.out.println(current_image +"current_image");
+		
+		if(!"".equals(orginalFileName)){
+			String path = request.getSession().getServletContext().getRealPath("/project");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+			String mainImage = sdf.format(new Date()) + "_" + orginalFileName;
+			dto.setMain_image(mainImage);
+			//기존 사진 삭제
+			try {
+				File file = new File(path + "\\" + current_image);
+				file.delete();
+				//새로운 사진 저장
+				dto.getUpload().transferTo(new File(path + "\\" + mainImage));
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+			dto.setMain_image("noImage");
+			System.out.println("이미지 업로드 필요없음");
+		}
+		
+//		System.out.println(dto.getProject_title());
+//		System.out.println(dto.getService());
 		//수정
 		projectMapper.updateProject(dto);
 		System.out.println("dto숫자"+dto.getNum());

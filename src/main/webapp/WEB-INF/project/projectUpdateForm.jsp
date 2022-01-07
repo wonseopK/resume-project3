@@ -95,7 +95,6 @@
 			<input name="project_title"type="text" class ="project-title" value="${project.project_title }" placeholder="프로젝트 제목을 입력해주세요" required="required"><br>
 			<span class="content-title">Main-Image</span>
 			<input name="upload" type="file"  multiple="multiple">
-			<div>프로젝트 서비스 ${project.service }</div>
 			<span class="content-title">Service-Purpose</span>
 			<textarea name="service" class="summernote write-form" required="required">${project.service }</textarea>
 			

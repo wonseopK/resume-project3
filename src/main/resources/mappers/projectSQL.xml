@@ -46,6 +46,9 @@
 	<update id="updateProject" parameterType="ProjectDTO">
 		<!-- main_image = #{main_image}, -->
 		update project_list set project_title = #{project_title}, code_link = #{code_link} 
+		<if test="main_image != 'noImage'">
+			, main_image = #{main_image}
+		</if>
 		where num = #{num}
 	</update>
 	<update id="updateService" parameterType="ProjectDTO">

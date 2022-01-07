@@ -62,11 +62,12 @@ public class ProjectController {
 		return "/project/projectUpdateForm";
 	}
 	@PostMapping("/project-list/change-content")
-	public String updateProject(ProjectDTO projectDTO) {
+	public String updateProject(ProjectDTO projectDTO, HttpServletRequest request) {
 //		System.out.println(projectDTO.getProject_title());
 //		System.out.println(projectDTO.getService());
-		System.out.println("수정num값 = " + projectDTO.getNum());
-		projectService.updateProject(projectDTO);
+		//파일을 미입력하면 null이아닌 "" 즉 빈 문자열이 넘어 온다
+		System.out.println(projectDTO.getUpload().getOriginalFilename()+": 파일이름");
+		projectService.updateProject(projectDTO, request);
 		return "redirect:/resume/project-list";
 	}
 	
