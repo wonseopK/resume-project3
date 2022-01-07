@@ -9,8 +9,8 @@
 <style type="text/css">
 	/* 공통사용 */
 	.project-image{
-		width: 500px;
-		height: 400px;
+		width: 398px;
+		height: 350px;
 	}
 	.base-btn{
 		width: 80px;
@@ -43,7 +43,7 @@
 		font-weight: 500;
 		text-align: center;
 	}
-	.search-container{
+	/* .search-container{
 		width: 100%;
 		height: 50px;
 		position: relative;
@@ -62,23 +62,28 @@
 	.keyword{
 		width: 360px;
 		height: 30px;
-	}
+	} */
 	.project-list-container{
 		width: 100%;
-		height: 440px;
+		height: 470px;
 		position: relative;
 		display: flex;
+		background-color: #f7f9fa;
+		margin-top: 20px;
 	}
 	.project-detail{
-		witdh: 500px;
-		height: 380px;
-		margin-left: 50px;
-		margin-top: 40px;
+		width: 400px;
+		height: 410px;
+		margin-left: 117px;
+		margin-top: 30px;
 		cursor: pointer;
+		background-color: white;
+		border: 1px solid grey;
+		box-sizing: border-box;
 	}
 	.title{
-		witdh: 500px;
-		height: 60px;
+		width: 398px;
+		height: 58px;
 		text-align: center;
 		background-color: white;
 		color: #333;
@@ -88,13 +93,10 @@
 		text-overflow:ellipsis;
 		white-space:nowrap;
 		word-wrap:normal;
-		width:500px;
 		overflow:hidden;
-		border: 5px solid #f7f9fa;
 				 
 	}
 	.page-container{
-		margin-top: 50px;
 		width: 100%;
 		height: 90px;
 		position: relative;
