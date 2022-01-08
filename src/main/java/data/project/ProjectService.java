@@ -98,4 +98,9 @@ public class ProjectService {
 				
 		projectMapper.deleteProject(num);
 	}
+	
+	//관리자 확인
+	public int checkPwd(String pwd) {
+		return projectMapper.checkPwd(pwd);
+	}
 }

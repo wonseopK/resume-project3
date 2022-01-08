@@ -81,6 +81,14 @@ public class ProjectController {
 		return "project";
 	}
 	
+	//비밀번호확인
+	@ResponseBody
+	@PostMapping("/project-list/admin")
+	public int checkPwd(String pwd) {
+		System.out.println("비밀번호체크" +pwd+"결과"+ projectService.checkPwd(pwd));
+		
+		return projectService.checkPwd(pwd);
+	}
 	
 	
 }

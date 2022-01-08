@@ -168,7 +168,26 @@
 	
 	<script type="text/javascript">
 		$(".write-btn").click(function() {
-			location.href="../project-list/project-form";
+			let pwd = prompt("관리자 비밀번호를 입력해주세요")
+			if(pwd.trim() != ""){
+				$.ajax({
+					type : "post",
+					url : "../project-list/admin",
+					data : {pwd, pwd},
+					success : function(result) {
+						if(result == 1){
+							location.href="../project-list/project-form";
+						}else{
+							alert("비밀번호가 일치하지 않습니다.")
+						}
+					},
+					error	: function(request,status,error){
+				        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				    }
+					
+				})
+			}
+			
 		})
 		
 		$(".project-detail").click(function() {

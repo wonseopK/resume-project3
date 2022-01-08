@@ -69,5 +69,11 @@
 	<delete id="deleteProject" parameterType="int">
 		delete from project_list where num = #{num}
 	</delete>
+	
+	<!-- 관리자 확인 -->
+	<select id="checkPwd" parameterType="String" resultType="int">
+		select count(*) from admin_check where pwd = #{pwd}
+	</select>
+	
 </mapper>
 
