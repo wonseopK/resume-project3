@@ -88,23 +88,61 @@
 				if(check){
 					let currentPage = $("#currentPage").val()
 					let num = $("#num").val();
-					$.ajax({
-						type		: "Delete",
-						  url		: "../project-list/bad-project",
-						  data		: {num : num},
-						  success	: function() {
-							  alert("삭제되었습니다.")
-							  location.href="../resume/project-list?currentPage=1"
-						  },
-						  error		: function(request,status,error){
+					let pwd = prompt("관리자 비밀번호를 입력해주세요")
+					if(pwd.trim() != ""){
+						$.ajax({
+							type : "post",
+							url : "../project-list/admin",
+							data : {pwd, pwd},
+							success : function(result) {
+								if(result == 1){
+									$.ajax({
+										type		: "Delete",
+										  url		: "../project-list/bad-project",
+										  data		: {num : num},
+										  success	: function() {
+											  alert("삭제되었습니다.")
+											  location.href="../resume/project-list?currentPage=1"
+										  },
+										  error		: function(request,status,error){
+										        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+										  }
+									})
+								}else{
+									alert("비밀번호가 일치하지 않습니다.")
+								}
+							},
+							error	: function(request,status,error){
 						        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-						  }
-					})
+						    }
+						})
+					}
 				}
 			})
+			
+			
 			$(".update-btn").click(function() {
 				let num = $("#num").val()
-				location.href="../project-list/updateForm?num=" + num
+				let pwd = prompt("관리자 비밀번호를 입력해주세요")
+				if(pwd.trim() != ""){
+					$.ajax({
+						type : "post",
+						url : "../project-list/admin",
+						data : {pwd, pwd},
+						success : function(result) {
+							if(result == 1){
+								location.href="../project-list/updateForm?num=" + num
+							}else{
+								alert("비밀번호가 일치하지 않습니다.")
+							}
+						},
+						error	: function(request,status,error){
+					        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					    }
+						
+					})
+				}		
+						
 			})
 		</script>
 	</div>
