@@ -83,6 +83,7 @@
 				let currentPage = $("#currentPage").val()
 				location.href="../resume/project-list?currentPage="+currentPage;
 			})
+			
 			$(".delete-btn").click(function() {
 				let check = confirm("정말로 삭제하시겠습니까?");
 				if(check){
@@ -119,7 +120,6 @@
 					}
 				}
 			})
-			
 			
 			$(".update-btn").click(function() {
 				let num = $("#num").val()

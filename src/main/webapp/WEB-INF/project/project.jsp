@@ -68,7 +68,6 @@
 		height: 470px;
 		position: relative;
 		display: flex;
-		background-color: #f7f9fa;
 		margin-top: 20px;
 	}
 	.project-detail{
