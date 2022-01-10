@@ -60,16 +60,18 @@
 		<br><span class="content-title">Service-Purpose</span>
 		<div class="show-contents">${project.service}</div>
 		
-		<br><span class="content-title">Development-Environment</span>
+		<br><br><br><span class="content-title">Development-Environment</span>
 		<div class="show-contents">${project.environment}</div>
 		
-		<br><span class="content-title">Function-Explanation</span>
+		<br><br><br><span class="content-title">Function-Explanation</span>
 		<div class="show-contents">${project.function_detail}</div>
 		
-		<br><span class="content-title">Maintenance</span>
+		<br><br><br><span class="content-title">Maintenance</span>
 		<div class="show-contents">${project.maintenance}</div>
-		<br><span class="content-title">Code-Link</span>
+		
+		<br><br><br><span class="content-title">Code-Link</span>
 		<br><a target="blank" href="${project.code_link}">move to GitHub</a>
+		<br>
 		<button type = "button" class="base-btn list-btn">목록</button>
 		
 		<button type = "button" class="base-btn delete-btn" >삭제</button>
