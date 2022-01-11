@@ -10,7 +10,7 @@
 	/* 공통사용 */
 	.project-image{
 		width: 400px;
-		height: 350px;
+		height: 250px;
 	}
 	.base-btn{
 		width: 80px;
