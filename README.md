@@ -50,3 +50,16 @@
 스프링정석 강좌에서 배웠던 base64가 기억나서 적용해보았습니다.
 우선 이미지를 https://www.base64-image.de/ 사이트에서 base64로 인코딩 했습니다. base 64로 인코딩하면 utf 8 기준 크기가 약 33% 
 증가하지만 서버에 요청할 필요없이 문서에 포함시킴으로써 이미지가 깜빡이는 것을 보안 할 수 있었습니다.
+
+# 문제 5
+  ![post](https://user-images.githubusercontent.com/87956011/149081877-a2d3cf2b-63ea-468d-8eee-84a67b9dad0d.JPG)
+  ![delete](https://user-images.githubusercontent.com/87956011/149081885-942a228d-2fa6-477a-b18b-cb6f341c8535.JPG)
+
+
+  자원을 효율 적으로 관리 하기 위한 restful 방식을 적용하고 싶었습니다.
+  
+# 해결
+  ![r-post](https://user-images.githubusercontent.com/87956011/149081988-3eb5c5a8-25e7-407e-9580-69308c813a65.JPG)
+  ![r-delete](https://user-images.githubusercontent.com/87956011/149081995-463fb700-ca24-42d6-8e36-7936532855d6.JPG)
+
+  맵핑을 단순히 get post가아닌 목적에 맞게 변경해주고 url 또한 변경해주었습니다.
