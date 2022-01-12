@@ -89,7 +89,7 @@
 </head>
 <body>
 	<div class = "form-container">
-		<form action="/project-list/change-content" method="post" enctype="multipart/form-data">
+		<form id="update-form" action="/project-list/content" method="post" enctype="multipart/form-data">
 			<span class="content-title">Project-Title</span>
 			<input name="project_title"type="text" class ="project-title" value="${project.project_title }" placeholder="프로젝트 제목을 입력해주세요" required="required"><br>
 			<span class="content-title">Main-Image</span>
@@ -111,7 +111,7 @@
 			
 			<input type="hidden" name="num" value="${project.num}">
 			<br><br>
-			<button type="submit" class="base-btn">수정</button>
+			<button type="submit" class="base-btn update-btn">수정</button>
 		</form>
 	</div>
 </body>

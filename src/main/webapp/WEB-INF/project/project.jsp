@@ -192,7 +192,7 @@
 		$(".project-detail").click(function() {
 			let num = $(this).children(".project-num").val()
 			let currentPage = $("#currentPage").val()
-			location.href="../project-list/project-detail?num="+num+"&currentPage="+currentPage;
+			location.href="../project-list/project?num="+num+"&currentPage="+currentPage;
 		})
 		
 		$(".project-detail").hover(function() {

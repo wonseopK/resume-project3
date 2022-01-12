@@ -22,7 +22,7 @@ public class ProjectController {
 	ProjectService projectService;
 	
 	//프로젝트 게시물 생성 CREATE
-	@PostMapping("/project-list/new-project")
+	@PostMapping("/project-list/project")
 	public String postNewProject(ProjectDTO dto, HttpServletRequest request) {
 		projectService.insertNewProject(dto, request);
 		return "redirect:/resume/project-list";
@@ -46,7 +46,7 @@ public class ProjectController {
 		
 		return "/project/project";
 	}
-	@GetMapping("/project-list/project-detail")
+	@GetMapping("/project-list/project")
 	public String showDetail(int num, int currentPage, Model model) {
 		ProjectDTO project = projectService.getProject(num);
 		project.setNum(num);
@@ -61,7 +61,8 @@ public class ProjectController {
 		m.addAttribute("project", projectService.getProject(num));
 		return "/project/projectUpdateForm";
 	}
-	@PostMapping("/project-list/change-content")
+	
+	@PostMapping("/project-list/content")
 	public String updateProject(ProjectDTO projectDTO, HttpServletRequest request) {
 //		System.out.println(projectDTO.getProject_title());
 //		System.out.println(projectDTO.getService());
@@ -74,7 +75,7 @@ public class ProjectController {
 	
 	//프로젝트 게시물 삭제 DELETE
 	@ResponseBody
-	@DeleteMapping("/project-list/bad-project")
+	@DeleteMapping("/project-list/project")
 	public String  deleteProject(int num, HttpSession session) {
 		System.out.println(num);
 		projectService.deleteProject(num, session);

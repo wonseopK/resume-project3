@@ -101,7 +101,7 @@
 								if(result == 1){
 									$.ajax({
 										type		: "Delete",
-										  url		: "../project-list/bad-project",
+										  url		: "../project-list/project",
 										  data		: {num : num},
 										  success	: function() {
 											  alert("삭제되었습니다.")

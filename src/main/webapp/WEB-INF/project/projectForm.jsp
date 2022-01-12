@@ -90,7 +90,7 @@
 </head>
 <body>
 	<div class = "form-container">
-		<form action="/project-list/new-project" method="post" enctype="multipart/form-data">
+		<form action="/project-list/project" method="post" enctype="multipart/form-data">
 			<span class="content-title">Project-Title</span>
 			<input name="project_title"type="text" class ="project-title" placeholder="프로젝트 제목을 입력해주세요" required="required"><br>
 			<span class="content-title">Main-Image</span>
